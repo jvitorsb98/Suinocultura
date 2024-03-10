@@ -45,12 +45,17 @@ export class PesagemSuinosComponent {
   brincoSuino: string = "";
   suinoEncontrado: boolean = false;
   suinoSelecionado: SuinoPesos[] = [];
+  chart: Chart | undefined;
 
   buscarSuino() {
     this.suinoSelecionado = SUINOS.filter(suino => suino.brinco_suino === this.brincoSuino);
     this.suinoEncontrado = this.suinoSelecionado.length > 0;
-    if (this.suinoEncontrado)
+    if (this.suinoEncontrado) {
+      if (this.chart) {
+        this.chart.destroy();
+      }
       this.renderizarGrafico();
+    }
   }
 
   renderizarGrafico() {
@@ -62,7 +67,7 @@ export class PesagemSuinosComponent {
     const pesos = this.suinoSelecionado.map(suino => suino.peso);
     const datas = this.suinoSelecionado.map(suino => suino.dt_pesagem);
 
-    new Chart(this.elemento.nativeElement, {
+    this.chart = new Chart(this.elemento.nativeElement, {
       type: 'bar',
       data: {
         labels: datas,
