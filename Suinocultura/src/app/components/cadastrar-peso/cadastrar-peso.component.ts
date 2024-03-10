@@ -112,6 +112,14 @@ export class CadastrarPesoComponent {
         if (!suinoAtualizado.pesos) {
           suinoAtualizado.pesos = [];
         }
+  
+        // Verifica se já existe um peso cadastrado na mesma data
+        const pesoExistente = suinoAtualizado.pesos.find((item: any) => item.dt_pesagem === dt_pesagem);
+        if (pesoExistente) {
+          alert('Já existe um peso cadastrado para esta data!');
+          return;
+        }
+  
         suinoAtualizado.pesos.push({ peso, dt_pesagem });
         this.dados.atualizeSuino(suinoAtualizado.brinco, suinoAtualizado).subscribe(() => {
           this.formCadastro.reset();
@@ -120,6 +128,7 @@ export class CadastrarPesoComponent {
       }
     }
   }
+  
 
 
   
