@@ -25,6 +25,7 @@ import { PesagemSuinosComponent } from './components/pesagem-suinos/pesagem-suin
 import { EditarPesoComponent } from './components/editar-peso/editar-peso.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HomeComponent } from './components/home/home.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { HomeComponent } from './components/home/home.component';
     HttpClientModule,
     NgMultiSelectDropDownModule,
     MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     AuthService,

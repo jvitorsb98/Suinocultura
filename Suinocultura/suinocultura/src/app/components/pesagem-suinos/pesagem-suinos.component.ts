@@ -1,8 +1,9 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
-import { Chart } from 'chart.js/auto';
+import { Chart, registerables } from 'chart.js/auto';
 import { DatabaseService } from '../../services/database.service';
 import { Suino } from '../../model/suino';
 import { EditarPesoComponent } from '../editar-peso/editar-peso.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pesagem-suinos',
@@ -15,9 +16,9 @@ export class PesagemSuinosComponent implements OnInit {
   brincoSuino: string = "";
   suinoEncontrado: boolean = false;
   suinoSelecionado: Suino | null = null;
-  dialog: any;
 
-  constructor(private databaseService: DatabaseService) { }
+  constructor(private databaseService: DatabaseService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.buscarSuino();
@@ -41,25 +42,57 @@ export class PesagemSuinosComponent implements OnInit {
       );
   }
 
-  editarPeso() {
+  editarPeso(suino: Suino | null, dataPesagem: string) {
+
+    if(suino == null || dataPesagem==null){
+      return;
+    }
+
     const dialogRef = this.dialog.open(EditarPesoComponent, {
       width: '500px',
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
-        this.renderizarGrafico();
+      data: {
+        suino: suino,
+        dataPesagem: dataPesagem
       }
     });
+  
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result && result.suinoAtualizado) {
+        // Atualiza o suíno com os dados atualizados
+        const suinoAtualizado = result.suinoAtualizado;
+        this.databaseService.atualizeSuino(suinoAtualizado.brinco, suinoAtualizado)
+          .subscribe(
+            () => {
+              console.log('Suíno atualizado com sucesso:');
+              // Atualiza o suíno selecionado
+              this.suinoSelecionado = suinoAtualizado;
+              // Renderiza o gráfico com os dados atualizados
+              this.renderizarGrafico();
+            },
+            error => {
+              console.error('Erro ao atualizar o suíno:', error);
+            }
+          );
+      }
+    });
+
   }
+  
 
   renderizarGrafico() {
     if (!this.elemento) {
       return;
     }
 
+
+    // Destruir o gráfico anterior, se existir
+    Chart.register(...registerables);
+    Chart.getChart(this.elemento.nativeElement)?.destroy();
+
     const pesos = this.suinoSelecionado!.pesos.map(peso => peso.peso);
     const datas = this.suinoSelecionado!.pesos.map(peso => peso.dt_pesagem);
+
+
 
     new Chart(this.elemento.nativeElement, {
       type: 'bar',

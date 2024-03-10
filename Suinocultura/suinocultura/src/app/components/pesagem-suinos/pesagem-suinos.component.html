@@ -30,7 +30,7 @@
               <td class="text-center">{{ suino.dt_pesagem }}</td>
               <td class="text-center">{{ suino.peso }}</td>
               <td class="text-center">
-                <button class="btn btn-sm btn-color" (onClick)="editarPeso()">Editar</button>
+                <button class="btn btn-sm btn-color" (click)="editarPeso(suinoSelecionado, suino.dt_pesagem)">Editar</button>
               </td>
             </tr>
           </tbody>
