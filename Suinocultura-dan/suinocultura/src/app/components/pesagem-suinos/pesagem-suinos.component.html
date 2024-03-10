@@ -1,0 +1,7 @@
+<div class="grafico-suinos-container">
+    <input placeholder="Brinco do animal" type="text" [(ngModel)]="brincoSuino" (change)="buscarSuino()">
+    <span *ngIf="!suinoEncontrado">Suíno com o código não cadastrado</span>
+    <div *ngIf="suinoEncontrado" >
+        <canvas id="graficoSuinos" class="grafico-suinos"></canvas>
+    </div>
+</div>

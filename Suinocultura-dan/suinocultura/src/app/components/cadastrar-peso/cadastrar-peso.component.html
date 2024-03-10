@@ -1,0 +1,28 @@
+<div class="box-body">
+
+    <mat-dialog-content>
+      <form [formGroup]="formCadastro">
+        <h2 mat-dialog-title>Cadastro de pesagem</h2>
+        <label>Brinco do animal</label>
+        <div class="dropdown">
+          <ng-multiselect-dropdown
+          [placeholder]="'Selecione o animal'"
+          [settings]="dropdownSettings"
+          [data]="suinos"
+          (onDeSelect)="onDeselect($event)"
+          (onSelect)="onItemSelect($event)"
+          ></ng-multiselect-dropdown>
+        </div><br>
+        <label>Data da pesagem</label>
+        <input type="date" formControlName="dt_pesagem" [ngClass]="{'class-invalid':formCadastro.get('dt_pesagem')?.invalid && formCadastro.get('dt_pesagem')?.touched}"><br>
+        <label>Peso (Kg)</label>
+        <input type="text" formControlName="peso" [ngClass]="{'class-invalid':formCadastro.get('peso')?.invalid && formCadastro.get('peso')?.touched}"><br>
+  
+        <mat-dialog-actions align="center">
+          <button mat-raised-button color="primary" (click)="onSubmit()">Cadastrar</button>
+        </mat-dialog-actions>
+      </form>
+  
+    </mat-dialog-content>
+  
+  </div>
