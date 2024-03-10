@@ -6,9 +6,11 @@ import { LoginComponent } from './login/login/login.component';
 import { CadastrarPesoComponent } from './components/cadastrar-peso/cadastrar-peso.component';
 import { AuthGuard } from './guards/guard.guard';
 import { PesagemSuinosComponent } from './components/pesagem-suinos/pesagem-suinos.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'cadastro', component: CadastroSuinoComponent, canActivate: [AuthGuard] },
   { path: 'registro', component: CadastrarPesoComponent, canActivate: [AuthGuard] },
   { path: 'listagem', component: ListagemSuinosComponent, canActivate: [AuthGuard] },

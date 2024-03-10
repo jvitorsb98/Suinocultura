@@ -22,6 +22,9 @@ import { LoginComponent } from './login/login/login.component';
 import { CadastrarPesoComponent } from './components/cadastrar-peso/cadastrar-peso.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PesagemSuinosComponent } from './components/pesagem-suinos/pesagem-suinos.component';
+import { EditarPesoComponent } from './components/editar-peso/editar-peso.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,8 @@ import { PesagemSuinosComponent } from './components/pesagem-suinos/pesagem-suin
     LoginComponent,
     CadastrarPesoComponent,
     PesagemSuinosComponent,
+    EditarPesoComponent,
+    HomeComponent,
     ],
   imports: [
     BrowserModule,
@@ -46,7 +51,8 @@ import { PesagemSuinosComponent } from './components/pesagem-suinos/pesagem-suin
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    MatDatepickerModule,
   ],
   providers: [
     AuthService,

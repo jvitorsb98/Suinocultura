@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { DatabaseService } from '../../services/database.service';
 import { Suino } from '../../model/suino';
+import { EditarPesoComponent } from '../editar-peso/editar-peso.component';
 
 @Component({
   selector: 'app-pesagem-suinos',
@@ -14,6 +15,7 @@ export class PesagemSuinosComponent implements OnInit {
   brincoSuino: string = "";
   suinoEncontrado: boolean = false;
   suinoSelecionado: Suino | null = null;
+  dialog: any;
 
   constructor(private databaseService: DatabaseService) { }
 
@@ -39,9 +41,20 @@ export class PesagemSuinosComponent implements OnInit {
       );
   }
 
+  editarPeso() {
+    const dialogRef = this.dialog.open(EditarPesoComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.renderizarGrafico();
+      }
+    });
+  }
+
   renderizarGrafico() {
     if (!this.elemento) {
-      console.error("Elemento não definido.");
       return;
     }
 
@@ -56,7 +69,7 @@ export class PesagemSuinosComponent implements OnInit {
           {
             label: 'Peso',
             data: pesos,
-            backgroundColor: 'orange',
+            backgroundColor: '#7ed218',
             barThickness: 35
           }
         ]

@@ -26,9 +26,8 @@ form {
   width: 350px;
   height: auto;
   padding: 30px;
-  border: 1px solid #000;
   gap: 15px;
-  background-color: #f1f1f1;
+  background-color: #7ed218;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -61,11 +60,12 @@ input {
   font-size: 11px;
   letter-spacing: 1px;
   border-radius: 5px;
+  background-color: #6db318;
 }
 
 .btn-submit:hover {
   cursor: pointer;
-  background-color: #2A3C35;
+  background-color: #507c1a;
   color: #fff;
 }
 

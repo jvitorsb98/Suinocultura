@@ -1,16 +1,18 @@
 <div class="box-body">
   <form [formGroup]="cadastro_suino">
-    <h2 mat-dialog-title>Cadastrar suíno</h2>
+    <div class="text-center">
+      <h2 mat-dialog-title>Cadastrar Suíno</h2>
+    </div>
     <div class="box-form">
-      <label>Brinco do animal</label>
+      <label>Brinco</label>
       <input type="text" formControlName="brinco" [ngClass]="{'class-invalid':cadastro_suino.get('brinco')?.invalid && cadastro_suino.get('brinco')?.touched}"/>
     </div>
     <div class="box-form">
-      <label>Brinco do pai</label>
+      <label>Brinco do Pai</label>
       <input type="text" formControlName="brinco_pai" [ngClass]="{'class-invalid':cadastro_suino.get('brinco_pai')?.invalid && cadastro_suino.get('brinco_pai')?.touched}"/>
     </div>
     <div class="box-form">
-      <label>Brinco da mãe</label>
+      <label>Brinco da Mãe</label>
       <input type="text" formControlName="brinco_mae" [ngClass]="{'class-invalid':cadastro_suino.get('brinco_mae')?.invalid && cadastro_suino.get('brinco_mae')?.touched}"/>
     </div>
     <div class="box-form">
@@ -18,7 +20,7 @@
       <input type="date" formControlName="dt_nasc" [ngClass]="{'class-invalid':cadastro_suino.get('dt_nasc')?.invalid && cadastro_suino.get('dt_nasc')?.touched}"/>
     </div>
     <div class="box-form">
-      <label>Data de saída</label>
+      <label>Data de Saída</label>
       <input type="date" formControlName="dt_saida" [ngClass]="{'class-invalid':cadastro_suino.get('dt_saida')?.invalid && cadastro_suino.get('dt_saida')?.touched}"/>
     </div>
 
@@ -37,7 +39,7 @@
       <input type="radio" value="Feminino" formControlName="sexo" [ngClass]="{'class-invalid':cadastro_suino.get('sexo')?.invalid && cadastro_suino.get('sexo')?.touched}"/> F
     </div>
     <mat-dialog-actions align="center">
-      <button mat-raised-button color="primary" (click)="onSubmit()">Cadastrar</button>
+      <button mat-raised-button (click)="onSubmit()" [ngStyle]="{ 'background-color': '#6db318', 'color': 'black' }">Cadastrar</button>
     </mat-dialog-actions>
   </form>
 

@@ -66,14 +66,14 @@ export class LoginComponent {
       if(this.logginIn){
         this.authService.loginUser(email, password).subscribe(
           responseData => {
-            this.router.navigate(['/listagem']);
+            this.router.navigate(['/home']);
           }
         );
       } else {
         this.authService.signupUser(email, password).subscribe(
           {
             next: (responseData) => {
-              this.router.navigate(['/listagem']);
+              this.router.navigate(['/home']);
             },
             error: (error) => {
               console.log(error);

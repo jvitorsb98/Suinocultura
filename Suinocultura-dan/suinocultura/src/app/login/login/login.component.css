@@ -1,8 +1,22 @@
 input.ng-invalid.ng-touched {
     border: 1px solid red;
-  }
-  
-  span.error {
-      font-size: 10px;
-      color: red;
-  }
+}
+
+span.error {
+    font-size: 10px;
+    color: red;
+}
+
+.bg-color {
+    background-color: #7ed218;
+}
+
+.btn-logreg {
+    background-color: #6db318;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-logreg:hover {
+    background-color: #507c1a;
+    cursor: pointer;
+}

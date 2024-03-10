@@ -1,16 +1,41 @@
-<div class="container mt-4">
-    <div class="row">
-      <div class="col">
-        <div class="input-group mb-3">
-          <input placeholder="Brinco do animal" type="text" class="form-control" [(ngModel)]="brincoSuino" (change)="buscarSuino()">
-          <button class="btn btn-primary" type="button" (click)="renderizarGrafico()">Gerar Gráfico</button>
-        </div>
-        <span *ngIf="!suinoEncontrado" class="text-danger">Suíno com o código não cadastrado</span>
+<div class="container p-5">
+  <div class="row">
+    <div class="col">
+      <div class="input-group mb-3">
+        <input placeholder="Brinco do animal" type="text" class="form-control" [(ngModel)]="brincoSuino"
+          (change)="buscarSuino()">
+        <button class="btn btn-color" type="button" (click)="renderizarGrafico()">Consultar</button>
       </div>
+      <span *ngIf="!suinoEncontrado" class="text-danger">Suíno não encontrado.</span>
     </div>
-    <div class="row" *ngIf="suinoEncontrado">
+  </div>
+  <div class="container p-5" *ngIf="suinoEncontrado">
+    <div class="row">
       <div class="col">
         <canvas #graficoSuinos></canvas>
       </div>
     </div>
+    <div class="row mt-4">
+      <div class="col">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="text-center">Data</th>
+              <th class="text-center">Peso</th>
+              <th class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let suino of suinoSelecionado?.pesos">
+              <td class="text-center">{{ suino.dt_pesagem }}</td>
+              <td class="text-center">{{ suino.peso }}</td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-color" (onClick)="editarPeso()">Editar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
+</div>
