@@ -1,0 +1,16 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <input placeholder="Brinco do animal" type="text" class="form-control" [(ngModel)]="brincoSuino" (change)="buscarSuino()">
+          <button class="btn btn-primary" type="button" (click)="renderizarGrafico()">Gerar Gráfico</button>
+        </div>
+        <span *ngIf="!suinoEncontrado" class="text-danger">Suíno com o código não cadastrado</span>
+      </div>
+    </div>
+    <div class="row" *ngIf="suinoEncontrado">
+      <div class="col">
+        <canvas #graficoSuinos></canvas>
+      </div>
+    </div>
+  </div>

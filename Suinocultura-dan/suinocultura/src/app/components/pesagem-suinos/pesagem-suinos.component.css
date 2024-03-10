@@ -1,0 +1,11 @@
+.grafico-suinos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.grafico-suinos {
+    max-width: 90%;
+    max-height: 90%;
+}
