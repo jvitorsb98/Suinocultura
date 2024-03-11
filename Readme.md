@@ -32,40 +32,40 @@ O Sistema de Gerenciamento de Suínos é uma aplicação web desenvolvida para a
 
 ### Manual de Uso
 
-2. **Cadastro de Usuários:**
+1. **Cadastro de Usuários:**
    - Antes de acessar o sistema, é necessário ter uma conta de usuário. Para criar uma nova conta, siga os passos abaixo:
      1. Na página inicial de login, clique no link "Cadastro".
      2. Preencha o formulário de cadastro com as informações solicitadas, incluindo nome, endereço de e-mail e senha.
      3. Após preencher todos os campos, clique no botão de registro para finalizar.
 
-1. **Login:**
+2. **Login:**
    - Para acessar o sistema, insira seu email de usuário e senha nos campos correspondentes e clique em "Login".
 
-2. **Cadastro de Suínos:**
+3. **Cadastro de Suínos:**
    - Na tela principal, clique no botão "Cadastrar Suíno".
    - Preencha os campos obrigatórios no formulário de cadastro.
    - Clique em "Cadastrar" para adicionar o suíno ao sistema.
 
-3. **Edição de Suínos:**
+4. **Edição de Suínos:**
    - Na tela principal, clique no botão "Listar Suínos".
    - Selecione o suíno que deseja editar na lista.
    - Faça as alterações necessárias nos campos do formulário de edição.
    - Clique em "Salvar Alterações" para confirmar as alterações.
 
-4. **Registro de Pesos:**
+5. **Registro de Pesos:**
    - Na tela principal, clique no botão "Cadastrar Peso".
    - Selecione o suíno pelo brinco na lista suspensa.
    - Insira o peso e a data correspondente nos campos do formulário.
    - Clique em "Cadastrar" para registrar o peso do suíno.
 
-5. **Edição de Pesos:**
+6. **Edição de Pesos:**
    - Na tela principal, clique no botão "Gráfico de Peso".
    - Indique o brinco do suíno, assim mostrando os dados em relação ao peso do mesmo.
    - Clique no botão de editar na lista de pesos, do qual quer realizar a alteração.
    - Faça as alterações necessárias nos campos do formulário de edição.
    - Clique em "Salvar" para confirmar as alterações.
 
-6. **Consulta de Suínos e seus Pesos:**
+7. **Consulta de Suínos e seus Pesos:**
    - Na tela de listagem, use a barra de pesquisa para encontrar um suíno pelo ou pela opção que desejar.
    - Neste ponto já é visualizado as informações em relação ao suíno.
    - Para visualizar os dados em relação ao peso, vá para o Gráfico de Peso e indique o brinco do suíno escolhido.
