@@ -7,14 +7,19 @@ import { CadastrarPesoComponent } from './components/cadastrar-peso/cadastrar-pe
 import { AuthGuard } from './guards/guard.guard';
 import { PesagemSuinosComponent } from './components/pesagem-suinos/pesagem-suinos.component';
 import { HomeComponent } from './components/home/home.component';
+import { CadastrarAtividadeComponent } from './components/sessao/cadastrar-atividade/cadastrar-atividade.component';
+import { CadastrarSessaoComponent } from './components/sessao/cadastrar-sessao/cadastrar-sessao.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'cadastro', component: CadastroSuinoComponent, canActivate: [AuthGuard] },
-  { path: 'registro', component: CadastrarPesoComponent, canActivate: [AuthGuard] },
-  { path: 'listagem', component: ListagemSuinosComponent, canActivate: [AuthGuard] },
-  {path: 'pesagem', component: PesagemSuinosComponent, canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent },
+  { path: 'cadastro', component: CadastroSuinoComponent },
+  { path: 'registro', component: CadastrarPesoComponent },
+  { path: 'listagem', component: ListagemSuinosComponent },
+  { path: 'pesagem', component: PesagemSuinosComponent},
+  { path: 'atividade/cadastro', component: CadastrarAtividadeComponent },
+  { path: 'sessao/cadastro', component: CadastrarSessaoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: LoginComponent },
   { path: '**', redirectTo: '/login' }

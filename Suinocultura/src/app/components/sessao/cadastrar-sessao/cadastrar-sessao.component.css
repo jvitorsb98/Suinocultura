@@ -1,0 +1,6 @@
+.suinos-container {
+    height: 350px;
+    overflow-y: auto;
+    border: 1px solid #eaeaea;
+    border-radius: 10px;
+  }
