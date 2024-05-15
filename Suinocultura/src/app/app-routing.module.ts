@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'atividade/cadastro', component: CadastrarAtividadeComponent },
   { path: 'sessao/cadastro', component: CadastrarSessaoComponent },
   { path: 'sessao/listar', component: ListarSecoesComponent },
-  { path: 'sessao/finalizar', component: FinalizarSecaoComponent },
+  { path: 'sessao/finalizar/:id', component: FinalizarSecaoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: LoginComponent },
   { path: '**', redirectTo: '/login' }

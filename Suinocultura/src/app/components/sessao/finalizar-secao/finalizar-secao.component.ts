@@ -71,7 +71,7 @@ export class FinalizarSecaoComponent implements OnInit {
         const filteredSuinoResponses = suinoResponses.filter(response => response !== null);
         
         filteredSuinoResponses.forEach(response => {
-          if (this.isSuino(response)) { // Verifica se é do tipo Suino
+          if (this.isSuino(response)) { 
             this.suinos.push({
               brinco: response.brinco,
               brinco_pai: response.brinco_pai,
@@ -88,7 +88,7 @@ export class FinalizarSecaoComponent implements OnInit {
         this.suinosFiltrados = this.suinos;
       
         this.suinos.forEach((suino) => {
-          if (suino && suino.brinco) { // Verifica se suino e suino.brinco não são nulos ou indefinidos
+          if (suino && suino.brinco) { 
             this.formSuinos.addControl(suino.brinco, this.formBuilder.control(true));
           }
         });
