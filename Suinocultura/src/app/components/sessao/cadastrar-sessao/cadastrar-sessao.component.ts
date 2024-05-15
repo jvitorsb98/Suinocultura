@@ -3,7 +3,6 @@ import { Atividade } from '../../../model/atividade';
 import { Suino } from '../../../model/suino';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { DatabaseService } from '../../../services/database.service';
-import { DatePipe } from '@angular/common';
 import { Sessao } from '../../../model/sessao';
 
 @Component({
@@ -48,6 +47,7 @@ export class CadastrarSessaoComponent {
       this.listaSuinos = [];
 
       for (const key in suinos) {
+        console.log(key)
         if (suinos.hasOwnProperty(key)) {
           if ('status' in suinos[key] && suinos[key].status === 'Ativo')
             this.listaSuinos.push({ ...suinos[key], brinco: key });
@@ -103,22 +103,32 @@ export class CadastrarSessaoComponent {
       // data = this.dataPipe.transform(data, 'yyyy-MM-dd') ?? '';
 
       let sessao: Sessao = {
-        id: '',
+        id: this.gerarStringAleatoria(),
         descricao: this.formCadastro.value.descricao,
         data: data,
-        status: false,
+        status: true,
+        suinos: idSuinos
       };
 
       this.database.addSessao(
         sessao,
         this.formCadastro.value.atividades,
-        idSuinos
       );
     }
   }
 
   get atividades(): FormArray {
     return this.formCadastro.get('atividades') as FormArray;
+  }
+
+  gerarStringAleatoria(): string {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let resultado = '';
+    for (let i = 0; i < 10; i++) {
+      const indice = Math.floor(Math.random() * caracteres.length);
+      resultado += caracteres.charAt(indice);
+    }
+    return resultado;
   }
 
   selectAtividade(idAtividade: string): void {

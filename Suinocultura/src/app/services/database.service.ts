@@ -110,20 +110,14 @@ export class DatabaseService {
 
   addSessao(
     sessao: Sessao,
-    listaAtividadesId: string[] = [],
-    listaIdSuinos: string[] = [],
-    status: boolean = true
+    listaAtividadesId: string[],
   ) {
-    if (listaAtividadesId.length !== 0 && listaIdSuinos.length !== 0) {
+    if (listaAtividadesId.length !== 0) {
       this.http
-        .put(this.endpoint + '/sessoes.json', sessao)
+        .put(this.endpoint + `/sessoes/${sessao.id}/.json`, sessao)
         .subscribe((response) => {
           if (response && 'name' in response) {
-            let sessaoId: string = response['name'] as string;
             let suinos: any = {};
-            listaIdSuinos.forEach((id) => {
-              suinos[id] = status;
-            });
             for (let i = 0; i < listaAtividadesId.length; i++) {
               let data = {
                 ...suinos,
@@ -131,7 +125,7 @@ export class DatabaseService {
               };
               this.http
                 .put(
-                  this.endpoint + `/sessoes/${sessaoId}/atividades/.json`,
+                  this.endpoint + `/sessoes/${sessao.id}/atividades/.json`,
                   data
                 ).subscribe();
             }

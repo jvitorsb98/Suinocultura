@@ -3,4 +3,5 @@ export interface Sessao {
   data: Date;
   descricao: string;
   status: boolean;
+  suinos: string[];
 }
