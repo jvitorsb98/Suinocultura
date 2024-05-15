@@ -34,19 +34,19 @@ export class FinalizarSecaoComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') || '';
-
+  
     this.databaseService.getSessao(this.id).subscribe((response: Sessao) => {
       this.sessao = response;
       this.sessao.id = this.id;
     });
-
-    this.databaseService.getAtividadesSessao(this.id).subscribe((response) => {
+  
+    this.databaseService.buscarAtividadesDaSessao(this.id).subscribe((response) => {
       for (const key in response) {
         if (response.hasOwnProperty(key)) {
           this.atividadesSessao.push({ ...response[key], id: response[key].id });
         }
       }
-
+  
       for (const atividade of this.atividadesSessao) {
         this.databaseService.getAtividade(atividade.id).subscribe((response: Atividade) => {
           response.id = atividade.id;
@@ -54,22 +54,14 @@ export class FinalizarSecaoComponent implements OnInit {
         });
       }
     });
-
-
+  
     this.databaseService.getSuinosSessao(this.id).subscribe((response) => {
-      for (const key in response) {
-        if (response.hasOwnProperty(key)) {
-          this.suinos.push({ ...response[key], id: response[key].id });
-        }
-      }
-
-      const requests = this.suinos.map(suino =>
-        this.databaseService.getSuinoPorBrinco(suino.brinco!)
-      );
-
-      forkJoin(requests).subscribe((suinoResponses: (Suino | null)[]) => {
+      const suinosRequests = response.map((suinoId: string) => this.databaseService.getSuinoPorBrinco(suinoId));
+  
+      // Esperar que todas as solicitações de suíno sejam concluídas
+      forkJoin(suinosRequests).subscribe((suinoResponses: (Suino | null)[]) => {
+        // Filtrar suínos nulos e adicionar suínos válidos à lista
         const filteredSuinoResponses = suinoResponses.filter(response => response !== null);
-        
         filteredSuinoResponses.forEach(response => {
           if (this.isSuino(response)) { 
             this.suinos.push({
@@ -95,6 +87,7 @@ export class FinalizarSecaoComponent implements OnInit {
       });
     });
   }
+  
 
   checkAtividade(marcado: boolean) {
     this.suinosFiltrados.forEach((suino) => {

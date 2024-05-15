@@ -1,5 +1,5 @@
+import { Atividade } from './../../../model/atividade';
 import { Component } from '@angular/core';
-import { Atividade } from '../../../model/atividade';
 import { Suino } from '../../../model/suino';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { DatabaseService } from '../../../services/database.service';
@@ -100,19 +100,21 @@ export class CadastrarSessaoComponent {
       }
 
       let data = this.formCadastro.value.data;
-      // data = this.dataPipe.transform(data, 'yyyy-MM-dd') ?? '';
+      
+      
+      
 
       let sessao: Sessao = {
         id: this.gerarStringAleatoria(),
         descricao: this.formCadastro.value.descricao,
         data: data,
         status: false,
-        suinos: idSuinos
+        suinos: idSuinos,
+        atividades: this.formCadastro.value.atividades
       };
 
       this.database.addSessao(
         sessao,
-        this.formCadastro.value.atividades,
       );
     }
   }

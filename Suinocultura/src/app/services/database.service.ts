@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Suino } from '../model/suino';
-import { Observable, catchError, map, retry, tap, throwError } from 'rxjs';
+import { Observable, catchError, map, retry, tap, throwError, forkJoin, switchMap , mergeMap} from 'rxjs';
 import { Atividade } from '../model/atividade';
 import { Sessao } from '../model/sessao';
 
@@ -110,18 +110,17 @@ export class DatabaseService {
 
   addSessao(
     sessao: Sessao,
-    listaAtividadesId: string[],
   ) {
-    if (listaAtividadesId.length !== 0) {
+    if (sessao.atividades.length !== 0) {
       this.http
         .put(this.endpoint + `/sessoes/${sessao.id}/.json`, sessao)
         .subscribe((response) => {
           if (response && 'name' in response) {
             let suinos: any = {};
-            for (let i = 0; i < listaAtividadesId.length; i++) {
+            for (let i = 0; i < sessao.atividades.length; i++) {
               let data = {
                 ...suinos,
-                id: listaAtividadesId[i],
+                id: sessao.atividades[i],
               };
               this.http
                 .put(
@@ -152,56 +151,34 @@ export class DatabaseService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getAtividadesSessao(idSessao: string): Observable<Atividade[]> {
+
+  buscarAtividadesDaSessao(idSessao: string): Observable<Atividade[]> {
+    return this.getAtividadesSessao(idSessao).pipe(
+      switchMap((ids: string[]) => {
+        const observables: Observable<Atividade>[] = [];
+        ids.forEach(id => {
+          observables.push(this.getAtividade(id));
+        });
+        return forkJoin(observables);
+      })
+    );
+  }
+
+  getAtividadesSessao(idSessao: string): Observable<string[]> {
     return this.http
-      .get<Atividade[]>(this.endpoint + `/sessoes/${idSessao}/atividades.json`)
+      .get<string[]>(`${this.endpoint}/sessoes/${idSessao}/atividades.json`)
       .pipe(
         retry(2),
-        catchError(this.handleError),
-        map((response) => {
-          const atividades: Atividade[] = [];
-          for (const key in response) {
-            if (response.hasOwnProperty(key)) {
-              atividades.push({
-                descricao: response[key].descricao,
-                id: response[key].id,
-              });
-            }
-          }
-          return atividades;
-        })
+        catchError(this.handleError)
       );
   }
 
-  getSuinosSessao(idSessao: string): Observable<any[]> {
+  getSuinosSessao(idSessao: string): Observable<string[]> {
     return this.http
-      .get<Suino[]>(this.endpoint + `/sessoes/${idSessao}.json`)
+      .get<string[]>(`${this.endpoint}/sessoes/${idSessao}/suinos.json`)
       .pipe(
         retry(2),
-        catchError(this.handleError),
-        map((sessao: any) => {
-          if (
-            sessao &&
-            sessao.atividades &&
-            Object.keys(sessao.atividades).length > 0
-          ) {
-            const suinos: any[] = [];
-            let primeiraAtividade: any = Object.keys(sessao.atividades)[0];
-            let objAtividade = sessao.atividades[primeiraAtividade];
-
-            for (const suino in objAtividade) {
-              if (suino !== 'id') {
-                suinos.push({
-                  id: suino,
-                  status: objAtividade[suino],
-                });
-              }
-            }
-            return suinos;
-          } else {
-            return [];
-          }
-        })
+        catchError(this.handleError)
       );
   }
 
