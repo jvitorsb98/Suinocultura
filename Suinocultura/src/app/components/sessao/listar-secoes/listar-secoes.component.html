@@ -1,1 +1,53 @@
-<p>listar-secoes works!</p>
+<h1>Sessões</h1>
+
+<div class="filtro">
+    <mat-form-field>
+      <mat-label>Filtro</mat-label>
+      <mat-select matNativeControl required [(ngModel)]="valorFiltro">
+        <mat-option value="data">Data</mat-option>
+        <mat-option value="status">Status</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field *ngIf="valorFiltro == 'status'">
+      <mat-label>Status</mat-label>
+      <mat-select matNativeControl required [(ngModel)]="valorPesquisa">
+        <mat-option value="agendado">Agendado</mat-option>
+        <mat-option value="realizado">Realizado</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field *ngIf="valorFiltro.slice(0,4) == 'data'">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="valorPesquisa">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+  <button mat-fab color="primary" aria-label="Pesquisar" (click)="filtrarListagem(valorFiltro)">
+    <mat-icon>search</mat-icon>
+  </button>
+
+  <button *ngIf="valorPesquisa" mat-mini-fab color="warn" aria-label="Limpar" (click)="limparFiltro()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div class="appointment-list">
+    <section *ngFor="let sessao of listaFiltrada; let i = index" class="container-flex">
+      <div>
+        <div *ngIf="!sessao.status && verificarAtraso(sessao.data)" matBadgePosition="below after" matBadge="!" matBadgeColor="warn"></div>
+        <h2>{{sessao.data}}</h2>
+        <br>
+        <span>{{sessao.descricao}}</span>
+        <br>
+        <span>Status: {{sessao.status ? 'Realizado' : 'Agendado'}}</span>
+        <br *ngIf="!sessao.status">
+        <div>
+          <!-- <button mat-raised-button color="accent" >Visualizar Sessão</button> -->
+          <button mat-raised-button color="primary" *ngIf="!sessao.status" (click)="finalizarSessao(sessao.id)">Finalizar Sessão</button>
+        </div>
+      </div>
+    </section>
+</div>

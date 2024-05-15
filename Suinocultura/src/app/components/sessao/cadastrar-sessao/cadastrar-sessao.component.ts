@@ -57,14 +57,14 @@ export class CadastrarSessaoComponent {
       this.suinosFiltrados = this.listaSuinos;
 
       this.listaSuinos.forEach((suino) => {
-        this.formCadastro.addControl(suino.brinco, this.formBuilder.control(false));
+        this.formCadastro.addControl(suino.brinco!, this.formBuilder.control(false));
       });
     });
   }
 
   checkAtividade(marcado: boolean) {
     this.suinosFiltrados.forEach((suino) => {
-      let id = suino.brinco;
+      let id = suino.brinco!;
       this.formCadastro.get(id)?.setValue(marcado);
     });
   }
@@ -106,7 +106,7 @@ export class CadastrarSessaoComponent {
         id: this.gerarStringAleatoria(),
         descricao: this.formCadastro.value.descricao,
         data: data,
-        status: true,
+        status: false,
         suinos: idSuinos
       };
 

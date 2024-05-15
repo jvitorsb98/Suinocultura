@@ -52,7 +52,7 @@ export class ListagemSuinosComponent {
 
     const termo = valor.toLowerCase();
     return this.listaSuinos.filter((suino) => {
-      const valorCampo = suino[this.campoSelecionado].toLowerCase();
+      const valorCampo = suino[this.campoSelecionado]!.toLowerCase();
       return valorCampo.includes(termo);
     });
   }
@@ -60,7 +60,7 @@ export class ListagemSuinosComponent {
 
   onExcluir(suino: Suino): void {
     if (confirm("Deseja remover este suíno?")) {
-      this.dados.deletaSuino(suino.brinco).subscribe(() => {
+      this.dados.deletaSuino(suino.brinco!).subscribe(() => {
         this.atualizaLista();
       });
     }
@@ -76,7 +76,7 @@ export class ListagemSuinosComponent {
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.dados.getSuinoPorBrinco(suino.brinco).subscribe(() => {
+        this.dados.getSuinoPorBrinco(suino.brinco!).subscribe(() => {
             this.atualizaLista();
         });
       }

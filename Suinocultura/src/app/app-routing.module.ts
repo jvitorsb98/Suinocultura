@@ -1,3 +1,4 @@
+import { FinalizarSecaoComponent } from './components/sessao/finalizar-secao/finalizar-secao.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroSuinoComponent } from './components/cadastro-suino/cadastro-suino.component';
@@ -9,6 +10,7 @@ import { PesagemSuinosComponent } from './components/pesagem-suinos/pesagem-suin
 import { HomeComponent } from './components/home/home.component';
 import { CadastrarAtividadeComponent } from './components/sessao/cadastrar-atividade/cadastrar-atividade.component';
 import { CadastrarSessaoComponent } from './components/sessao/cadastrar-sessao/cadastrar-sessao.component';
+import { ListarSecoesComponent } from './components/sessao/listar-secoes/listar-secoes.component';
 
 
 const routes: Routes = [
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'pesagem', component: PesagemSuinosComponent},
   { path: 'atividade/cadastro', component: CadastrarAtividadeComponent },
   { path: 'sessao/cadastro', component: CadastrarSessaoComponent },
+  { path: 'sessao/listar', component: ListarSecoesComponent },
+  { path: 'sessao/finalizar', component: FinalizarSecaoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: LoginComponent },
   { path: '**', redirectTo: '/login' }

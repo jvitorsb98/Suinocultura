@@ -1336,6 +1336,26 @@ var ActiveDescendantKeyManager = class extends ListKeyManager {
     }
   }
 };
+var FocusKeyManager = class extends ListKeyManager {
+  constructor() {
+    super(...arguments);
+    this._origin = "program";
+  }
+  /**
+   * Sets the focus origin that will be passed in to the items for any subsequent `focus` calls.
+   * @param origin Focus origin to be used when focusing items.
+   */
+  setFocusOrigin(origin) {
+    this._origin = origin;
+    return this;
+  }
+  setActiveItem(item) {
+    super.setActiveItem(item);
+    if (this.activeItem) {
+      this.activeItem.focus(this._origin);
+    }
+  }
+};
 var _InteractivityChecker = class _InteractivityChecker {
   constructor(_platform) {
     this._platform = _platform;
@@ -5115,12 +5135,6 @@ var _MatInternalFormField = __MatInternalFormField;
 })();
 
 export {
-  coerceBooleanProperty,
-  coerceNumberProperty,
-  coerceArray,
-  coerceCssPixelValue,
-  coerceElement,
-  coerceStringArray,
   Platform,
   getSupportedInputTypes,
   normalizePassiveListenerOptions,
@@ -5130,8 +5144,6 @@ export {
   _getFocusedElementPierceShadowDom,
   _getEventTarget,
   _isTestEnvironment,
-  Directionality,
-  BidiModule,
   BACKSPACE,
   ENTER,
   ESCAPE,
@@ -5146,10 +5158,17 @@ export {
   DOWN_ARROW,
   A,
   hasModifierKey,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  coerceArray,
+  coerceCssPixelValue,
+  coerceElement,
+  coerceStringArray,
   ObserversModule,
   addAriaReferencedId,
   removeAriaReferencedId,
   ActiveDescendantKeyManager,
+  FocusKeyManager,
   InteractivityChecker,
   FocusTrapFactory,
   CdkTrapFocus,
@@ -5157,6 +5176,8 @@ export {
   FocusMonitor,
   CdkMonitorFocus,
   A11yModule,
+  Directionality,
+  BidiModule,
   VERSION2 as VERSION,
   AnimationCurves,
   AnimationDurations,
@@ -5203,4 +5224,4 @@ export {
   MatRippleLoader,
   _MatInternalFormField
 };
-//# sourceMappingURL=chunk-HWOAY65K.js.map
+//# sourceMappingURL=chunk-JCP36IW3.js.map

@@ -34,6 +34,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { MatSelectModule } from '@angular/material/select';
     CadastrarAtividadeComponent,
     FinalizarSecaoComponent,
     ListarSecoesComponent,
+    
     ],
   imports: [
     BrowserModule,
@@ -70,7 +73,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatOptionModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatStepperModule
   ],
   providers: [
     AuthService,
