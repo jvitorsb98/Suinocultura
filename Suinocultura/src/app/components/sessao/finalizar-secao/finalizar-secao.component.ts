@@ -175,7 +175,7 @@ export class FinalizarSecaoComponent implements OnInit {
 
     alert('Sessão finalizada com sucesso!');
 
-    this.router.navigate(['sessoes/listar-sessoes']);
+    this.router.navigate(['listagem_sessoes']);
   }
 
   isSuino(obj: any): obj is Suino {
