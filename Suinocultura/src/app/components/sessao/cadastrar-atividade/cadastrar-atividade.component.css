@@ -4,13 +4,43 @@ h1 {
 }
 
 .atividade-form mat-form-field {
-    display: block;
-    width: 30%; /* Adjust this to change the width of the form */
-    margin: 0 auto; /* This will center the form */
-    padding: 15px; /* This adds some space inside the border */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 button {
     display: block;
     margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    border: 2px solid #605e5e;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    width: 70%;
+    max-width: 500px;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.btn-submit {
+    background-color: #6db318;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #507c1a;
+    cursor: pointer;
 }
