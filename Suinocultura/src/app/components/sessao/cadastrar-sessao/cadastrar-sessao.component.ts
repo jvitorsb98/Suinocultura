@@ -101,9 +101,6 @@ export class CadastrarSessaoComponent {
 
       let data = this.formCadastro.value.data;
       
-      
-      
-
       let sessao: Sessao = {
         id: this.gerarStringAleatoria(),
         descricao: this.formCadastro.value.descricao,
@@ -116,6 +113,8 @@ export class CadastrarSessaoComponent {
       this.database.addSessao(
         sessao,
       );
+      alert("Sessão cadastrada com sucesso!")
+      this.formCadastro.reset();
     }
   }
 
