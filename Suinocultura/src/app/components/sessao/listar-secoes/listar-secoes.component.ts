@@ -47,6 +47,7 @@ export class ListarSecoesComponent {
     return this.listaSessoes.filter(sessao => sessao.status === status);
   }
 
+  
   filtrarListagem(filtro: string){
     switch (filtro){
       case 'data':
