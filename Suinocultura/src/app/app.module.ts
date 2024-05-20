@@ -14,12 +14,16 @@ import { AuthService } from './modules/shared/services/auth.service';
 import { CoreModule } from './modules/core/core-module/core-module.module';
 import { SharedModuleModule } from './modules/shared/shared-module/shared-module.module';
 import { CoreFeatureModule } from './modules/feacture/core-feacture/core-feacture.module';
+import { HistoricoComponent } from './modules/feacture/historico/historico.component';
+import { GraficoAtividadeComponent } from './modules/feacture/grafico-atividade/grafico-atividade.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HistoricoComponent,
+    GraficoAtividadeComponent
   ],
   imports: [
     BrowserModule,

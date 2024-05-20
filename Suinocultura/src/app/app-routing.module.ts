@@ -1,3 +1,4 @@
+import { HistoricoComponent } from './modules/feacture/historico/historico.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListagemSuinosComponent } from './modules/feacture/listagem-suinos/listagem-suinos.component';
@@ -12,6 +13,7 @@ import { FinalizarSecaoComponent } from './modules/feacture/sessao/finalizar-sec
 import { LoginComponent } from './modules/core/login/login.component';
 import { CadastrarAtividadeComponent } from './modules/feacture/sessao/cadastrar-atividade/cadastrar-atividade.component';
 import { ListarSecoesComponent } from './modules/feacture/sessao/listar-secoes/listar-secoes.component';
+import { GraficoAtividadeComponent } from './modules/feacture/grafico-atividade/grafico-atividade.component';
 
 
 
@@ -26,6 +28,7 @@ const routes: Routes = [
   { path: 'cadastro_sessao', component: CadastrarSessaoComponent, canActivate: [AuthGuard] },
   { path: 'listagem_sessoes', component: ListarSecoesComponent , canActivate: [AuthGuard]},
   { path: 'sessao/finalizar/:id', component: FinalizarSecaoComponent, canActivate: [AuthGuard] },
+  { path: 'historico/:id', component: HistoricoComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: LoginComponent },
   { path: '**', redirectTo: '/login' }
