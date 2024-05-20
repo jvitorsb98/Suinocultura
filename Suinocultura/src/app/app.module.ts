@@ -22,8 +22,6 @@ import { GraficoAtividadeComponent } from './modules/feacture/grafico-atividade/
 @NgModule({
   declarations: [
     AppComponent,
-    HistoricoComponent,
-    GraficoAtividadeComponent
   ],
   imports: [
     BrowserModule,

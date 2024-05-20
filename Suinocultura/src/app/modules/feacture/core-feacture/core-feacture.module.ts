@@ -20,6 +20,8 @@ import { CadastrarAtividadeComponent } from '../sessao/cadastrar-atividade/cadas
 import { FinalizarSecaoComponent } from '../sessao/finalizar-secao/finalizar-secao.component';
 import { ListarSecoesComponent } from '../sessao/listar-secoes/listar-secoes.component';
 import { ListagemSuinosComponent } from '../listagem-suinos/listagem-suinos.component';
+import { GraficoAtividadeComponent } from '../grafico-atividade/grafico-atividade.component';
+import { HistoricoComponent } from '../historico/historico.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { ListagemSuinosComponent } from '../listagem-suinos/listagem-suinos.comp
     FinalizarSecaoComponent,
     ListarSecoesComponent,
     ListagemSuinosComponent,
+    GraficoAtividadeComponent,
+    HistoricoComponent
     
   ],
   imports: [
@@ -59,7 +63,9 @@ import { ListagemSuinosComponent } from '../listagem-suinos/listagem-suinos.comp
     CadastrarAtividadeComponent,
     FinalizarSecaoComponent,
     ListarSecoesComponent,
-    ListagemSuinosComponent
+    ListagemSuinosComponent,
+    GraficoAtividadeComponent,
+    HistoricoComponent
   ]
 })
 export class CoreFeatureModule { }
