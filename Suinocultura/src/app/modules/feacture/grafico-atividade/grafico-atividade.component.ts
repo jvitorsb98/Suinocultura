@@ -7,42 +7,52 @@ import { Suino } from '../../shared/model/suino';
   templateUrl: './grafico-atividade.component.html',
   styleUrls: ['./grafico-atividade.component.css']
 })
+
+
 export class GraficoAtividadeComponent implements OnInit {
   @ViewChild("meuCanvas", { static: true }) elemento!: ElementRef;
-  
+
   @Input() selectedSuino: Suino | undefined;
-  @Input() historico: any[] = [];
+  @Input() sessoes: any[] = [];
+  @Input() atividadesBanco: { [key: string]: { descricao: string, id: string } } = {};
 
   chart!: Chart;
   atividades: any[] = [];
   contagemAtividades: { [key: string]: number } = {};
 
   ngOnInit() {
-    this.historico.forEach((atividade) => {
-      if (atividade.descricao !== 'Pesagem') {
-        this.atividades.push(atividade);
+    this.processarDados();
+    this.inicializarGrafico();
+  }
+
+  processarDados() {
+    this.sessoes.forEach((sessao) => {
+      if (sessao.suinos.includes(this.selectedSuino?.brinco)) {
+        sessao.atividades.forEach((atividadeId: string) => {
+          const atividade = this.atividadesBanco[atividadeId];
+          if (atividade) {
+            this.atividades.push(atividade);
+            this.contagemAtividades[atividade.id] = (this.contagemAtividades[atividade.id] || 0) + 1;
+          }
+        });
       }
     });
 
-    this.atividades.forEach(atividade => {
-      const id = atividade.id;
-      this.contagemAtividades[id] = this.contagemAtividades[id] ? this.contagemAtividades[id] + 1 : 1;
-    });
+    // Remove duplicatas e ordena as atividades
+    this.atividades = this.atividades.filter((item, index, self) =>
+      index === self.findIndex((t) => (
+        t.id === item.id
+      ))
+    ).sort((a, b) => a.descricao.localeCompare(b.descricao));
+  }
 
+  inicializarGrafico() {
     if (this.chart) {
       this.chart.destroy();
     }
 
     this.delay(1000).then(() => {
       Chart.register(...registerables);
-
-      this.atividades = this.atividades.filter((item, index, self) =>
-        index === self.findIndex((t) => (
-          t.id === item.id
-        ))
-      );
-
-      this.atividades.sort((a, b) => a.descricao.localeCompare(b.descricao));
 
       const labelsSuino = this.atividades.map(item => item.descricao);
       const dataSuino = this.atividades.map(item => this.contagemAtividades[item.id]);
@@ -54,7 +64,10 @@ export class GraficoAtividadeComponent implements OnInit {
           datasets: [
             {
               label: "Qtde de Aplicações",
-              data: dataSuino
+              data: dataSuino,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
             }
           ]
         },
@@ -65,7 +78,7 @@ export class GraficoAtividadeComponent implements OnInit {
             y: {
               beginAtZero: true,
               ticks: {
-                stepSize: 0.5
+                stepSize: 1
               }
             }
           },

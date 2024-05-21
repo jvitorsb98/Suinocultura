@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../shared/services/database.service';
 import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
 import { Suino } from '../../shared/model/suino';
+
+interface HistoricoItem {
+  data: Date;
+  descricao: string;
+  detalhes: string;
+}
 
 @Component({
   selector: 'app-historico',
@@ -10,16 +15,16 @@ import { Suino } from '../../shared/model/suino';
   styleUrls: ['./historico.component.css']
 })
 export class HistoricoComponent implements OnInit {
-  suino = {} as Suino;
+  suino: Suino = {} as Suino;
   id = '';
-  mostarGraficoPeso: boolean = false;
-  mostarGraficoAtividade: boolean = false;
-  historico: { data: string; descricao: string; detalhes: string; }[] = [];
+  mostrarGraficoPeso = false;
+  mostrarGraficoAtividade = false;
+  historico: HistoricoItem[] = [];
+  atividadesBanco: { [key: string]: { descricao: string, id: string } } = {};
 
   constructor(
     private dataBase: DatabaseService,
     private route: ActivatedRoute,
-    private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
@@ -34,20 +39,23 @@ export class HistoricoComponent implements OnInit {
       }
     });
 
-    this.dataBase.getHistoricoSuino(this.id).subscribe((response) => {
+    this.dataBase.getHistoricoSuino(this.id).subscribe((response: HistoricoItem[]) => {
       this.historico = response;
     });
   }
 
-  formatarData(data: string): string {
-    return this.datePipe.transform(data, 'dd/MM/yyyy') ?? '';
+  formatarData(data: Date): string {
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
   }
 
   exibirGraficoPeso() {
-    this.mostarGraficoPeso = !this.mostarGraficoPeso;
+    this.mostrarGraficoPeso = !this.mostrarGraficoPeso;
   }
 
   exibirGraficoAtividade() {
-    this.mostarGraficoAtividade = !this.mostarGraficoAtividade;
+    this.mostrarGraficoAtividade = !this.mostrarGraficoAtividade;
   }
 }

@@ -110,27 +110,26 @@ export class DatabaseService {
   }
 
   getHistoricoSuino(id: string): Observable<any[]> {
-    // Verificar se o suíno existe no JSON
     return this.http.get<any>(`${this.endpoint}/suinos/${id}.json`).pipe(
-      catchError(this.handleError),
-      map((suino: any) => {
-        if (!suino || !suino.pesos) {
-          return [];
-        }
-        // Obter os pesos do suíno
-        const pesos = Object.values(suino.pesos);
+        catchError(this.handleError),
+        map((suino: any) => {
+            if (!suino || !suino.pesos) {
+                return [];
+            }
+            // Obter os pesos do suíno
+            const pesos = Object.values(suino.pesos);
 
-        // Mapear os pesos para o formato desejado
-        const historico = pesos.map((peso: any) => ({
-          data: new Date(peso.dt_pesagem),
-          descricao: 'Pesagem',
-          detalhes: `${peso.peso} kg`
-        }));
+            // Mapear os pesos para o formato desejado
+            const historico = pesos.map((peso: any) => ({
+                data: new Date(peso.dt_pesagem),
+                descricao: 'Pesagem',
+                detalhes: `${peso.peso} kg`
+            }));
 
-        return historico;
-      })
+            return historico;
+        })
     );
-  }
+}
 
 
   addSessao(
