@@ -1,5 +1,5 @@
 export interface Suino {
-  brinco: string;
+  brinco: string | undefined;
   brinco_pai: string;
   brinco_mae: string;
   dt_nasc: string;

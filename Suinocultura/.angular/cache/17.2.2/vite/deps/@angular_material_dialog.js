@@ -1,15 +1,17 @@
 import {
-  BasePortalOutlet,
-  CdkPortalOutlet,
-  ComponentPortal,
   Overlay,
   OverlayConfig,
   OverlayContainer,
   OverlayModule,
-  OverlayRef,
+  OverlayRef
+} from "./chunk-UWCTQLTT.js";
+import {
+  BasePortalOutlet,
+  CdkPortalOutlet,
+  ComponentPortal,
   PortalModule,
   TemplatePortal
-} from "./chunk-GM3W2GXB.js";
+} from "./chunk-VBAFUQNL.js";
 import {
   animate,
   animateChild,
@@ -32,7 +34,7 @@ import {
   _getFocusedElementPierceShadowDom,
   coerceNumberProperty,
   hasModifierKey
-} from "./chunk-CEC4VTFR.js";
+} from "./chunk-JCP36IW3.js";
 import {
   DOCUMENT,
   Location

@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="form-container">
+    <h1>Cadastrar Atividade</h1>
+    <form [formGroup]="formularioAtividade" (ngSubmit)="onSubmit()" class="atividade-form">
+
+      <mat-form-field>
+        <mat-label>Descrição da Atividade</mat-label>
+        <input matInput formControlName="descricao" />
+      </mat-form-field>
+      <button type="submit" class="btn btn-submit shadow-sm">Cadastrar Atividade </button>
+    </form>
+  </div>

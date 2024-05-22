@@ -121,7 +121,7 @@ export class CadastrarPesoComponent {
         }
   
         suinoAtualizado.pesos.push({ peso, dt_pesagem });
-        this.dados.atualizeSuino(suinoAtualizado.brinco, suinoAtualizado).subscribe(() => {
+        this.dados.atualizeSuino(suinoAtualizado.brinco!, suinoAtualizado).subscribe(() => {
           this.formCadastro.reset();
           alert('Pesagem cadastrada!');
         });

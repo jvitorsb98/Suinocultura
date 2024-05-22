@@ -26,6 +26,16 @@ import { EditarPesoComponent } from './components/editar-peso/editar-peso.compon
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HomeComponent } from './components/home/home.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CadastrarSessaoComponent } from './components/sessao/cadastrar-sessao/cadastrar-sessao.component';
+import { CadastrarAtividadeComponent } from './components/sessao/cadastrar-atividade/cadastrar-atividade.component';
+import { FinalizarSecaoComponent } from './components/sessao/finalizar-secao/finalizar-secao.component';
+import { ListarSecoesComponent } from './components/sessao/listar-secoes/listar-secoes.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatOptionModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -40,6 +50,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     PesagemSuinosComponent,
     EditarPesoComponent,
     HomeComponent,
+    CadastrarSessaoComponent,
+    CadastrarAtividadeComponent,
+    FinalizarSecaoComponent,
+    ListarSecoesComponent,
+    
     ],
   imports: [
     BrowserModule,
@@ -54,7 +69,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     HttpClientModule,
     NgMultiSelectDropDownModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule,
+    MatOptionModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatStepperModule
   ],
   providers: [
     AuthService,

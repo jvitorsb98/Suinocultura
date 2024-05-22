@@ -1,0 +1,9 @@
+.btn-submit {
+    background-color: #6db318;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .btn-submit:hover {
+    background-color: #507c1a;
+    cursor: pointer;
+  }
