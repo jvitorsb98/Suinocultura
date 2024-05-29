@@ -1,16 +1,20 @@
-import { FinalizarSecaoComponent } from './components/sessao/finalizar-secao/finalizar-secao.component';
+import { HistoricoComponent } from './modules/feacture/historico/historico.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CadastroSuinoComponent } from './components/cadastro-suino/cadastro-suino.component';
-import { ListagemSuinosComponent } from './components/listagem-suinos/listagem-suinos.component';
-import { LoginComponent } from './login/login/login.component';
-import { CadastrarPesoComponent } from './components/cadastrar-peso/cadastrar-peso.component';
-import { AuthGuard } from './guards/guard.guard';
-import { PesagemSuinosComponent } from './components/pesagem-suinos/pesagem-suinos.component';
-import { HomeComponent } from './components/home/home.component';
-import { CadastrarAtividadeComponent } from './components/sessao/cadastrar-atividade/cadastrar-atividade.component';
-import { CadastrarSessaoComponent } from './components/sessao/cadastrar-sessao/cadastrar-sessao.component';
-import { ListarSecoesComponent } from './components/sessao/listar-secoes/listar-secoes.component';
+import { ListagemSuinosComponent } from './modules/feacture/listagem-suinos/listagem-suinos.component';
+
+import { PesagemSuinosComponent } from './modules/feacture/pesagem-suinos/pesagem-suinos.component';
+import { HomeComponent } from './modules/core/home/home.component';
+import { CadastroSuinoComponent } from './modules/feacture/cadastro-suino/cadastro-suino.component';
+import { AuthGuard } from './modules/core/guards/guard.guard';
+import { CadastrarPesoComponent } from './modules/feacture/cadastrar-peso/cadastrar-peso.component';
+import { CadastrarSessaoComponent } from './modules/feacture/sessao/cadastrar-sessao/cadastrar-sessao.component';
+import { FinalizarSecaoComponent } from './modules/feacture/sessao/finalizar-secao/finalizar-secao.component';
+import { LoginComponent } from './modules/core/login/login.component';
+import { CadastrarAtividadeComponent } from './modules/feacture/sessao/cadastrar-atividade/cadastrar-atividade.component';
+import { ListarSecoesComponent } from './modules/feacture/sessao/listar-secoes/listar-secoes.component';
+import { GraficoAtividadeComponent } from './modules/feacture/grafico-atividade/grafico-atividade.component';
+
 
 
 const routes: Routes = [
@@ -24,6 +28,7 @@ const routes: Routes = [
   { path: 'cadastro_sessao', component: CadastrarSessaoComponent, canActivate: [AuthGuard] },
   { path: 'listagem_sessoes', component: ListarSecoesComponent , canActivate: [AuthGuard]},
   { path: 'sessao/finalizar/:id', component: FinalizarSecaoComponent, canActivate: [AuthGuard] },
+  { path: 'historico/:id', component: HistoricoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: LoginComponent },
   { path: '**', redirectTo: '/login' }
