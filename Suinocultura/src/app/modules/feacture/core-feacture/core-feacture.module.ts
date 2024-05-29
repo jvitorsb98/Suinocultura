@@ -22,6 +22,7 @@ import { ListarSecoesComponent } from '../sessao/listar-secoes/listar-secoes.com
 import { ListagemSuinosComponent } from '../listagem-suinos/listagem-suinos.component';
 import { GraficoAtividadeComponent } from '../grafico-atividade/grafico-atividade.component';
 import { HistoricoComponent } from '../historico/historico.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { HistoricoComponent } from '../historico/historico.component';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [DatabaseService],
   exports: [
